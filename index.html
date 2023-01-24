@@ -1,16 +1,224 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>MacOutlet</title>
-</head>
-<body>
-    <script src="js/items.js"></script>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <!-- header -->
+      <header>
+        <div class="header-container">
+          <div class="header-container__item">
+            <div class="logo">
+              <img src="./img/icons/store_logo.png" alt="store_logo" />
+            </div>
+            <div class="cart">
+              <img src="./img/icons/cart.svg" alt="cart" />
+            </div>
+          </div>
+          <div class="header-container__banner">
+            <div class="banner-container">
+              <h1 class="banner__header">Apple Watch 4</h1>
+              <button class="btn-add">Add to cart</button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- main -->
+      <main>
+        <div class="main-container">
+          <!-- search-field -->
+          <div class="search">
+            <input class="search__item" placeholder="Enter device name..." />
+            <div class="search__container">
+              <div class="search__container-searchicon">
+                <img src="./img/icons/search.svg" alt="search" />
+              </div>
+              <div class="search__container-items">
+                <img src="./img/icons/filter.svg" alt="filter" />
+                <img src="./img/icons/settings.svg" alt="settings" />
+              </div>
+            </div>
+          </div>
+          <div class="items-container">
+            <!-- filter-column -->
+            <div class="filter-column">
+              <!-- accordion values -->
+              <button class="accordion accordion__values">Price</button>
+              <div class="panel panel__values">
+                <div class="panel__values-item">
+                  <span>From</span>
+                  <input type="text" id="value_from" />
+                </div>
+                <div class="panel__values-item">
+                  <span>To</span>
+                  <input type="text" id="value_to" />
+                </div>
+              </div>
+              <!-- accordion colors -->
+              <button class="accordion accordion__colors">Color</button>
+              <div class="panel panel__colors">
+                <div class="panel__colors-container">
+                <div class="panel__colors-item">
+                  <ul>
+                    <li>
+                      <input type="checkbox" name="Red" id="colors__red" />
+                      <label for="colors__red">Red</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="Blue" id="colors__blue" />
+                      <label for="colors__blue">Blue</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="Gold" id="colors__gold" />
+                      <label for="colors__gold">Gold</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="Black" id="colors__black" />
+                      <label for="colors__black">Black</label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel__colors-item">
+                  <ul>
+                    <li>
+                      <input type="checkbox" name="Green" id="colors__green" />
+                      <label for="colors__green">Green</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="White" id="colors__white" />
+                      <label for="colors__white">White</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="Grey" id="colors__grey" />
+                      <label for="colors__grey">Grey</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="Yellow" id="colors__yellow" />
+                      <label for="colors__yellow">Yellow</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- accordion memory -->
+            <button class="accordion accordion__memory">Memory</button>
+            <div class="panel panel__memory">
+              <div class="panel__memory-container">
+                <div class="panel__memory-item">
+                  <ul>
+                    <li>
+                      <input type="checkbox" name="32Gb" id="memory__32gb" />
+                      <label for="memory__32gb">32 Gb</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="64Gb" id="memory__64gb" />
+                      <label for="memory__64gb">64 Gb</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="128Gb" id="memory__128gb" />
+                      <label for="memory__128gb">128 Gb</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="256Gb" id="memory__256gb" />
+                      <label for="memory__256gb">256 Gb</label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel__memory-item">
+                  <ul>
+                    <li>
+                      <input type="checkbox" name="512Gb" id="memory__512gb" />
+                      <label for="memory__512gb">512 Gb</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="1Tb" id="memory__1Tb" />
+                      <label for="memory__1Tb">1 Tb</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="2Tb" id="memory__2Tb" />
+                      <label for="memory__2Tb">2 Tb</label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="4Tb" id="memory__4Tb" />
+                      <label for="memory__4Tb">4 Tb</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- accordion OS -->
+            <button class="accordion accordion__os">OS</button>
+            <div class="panel panel__os">
+              <ul>
+                <li><input type="checkbox" name="IOS" id="ios">
+                    <label for="ios">IOS</label>
+                </li>
+                <li><input type="checkbox" name="Mac OS" id="mac_ios">
+                    <label for="mac_ios">Mac OS</label>
+                </li>
+                <li><input type="checkbox" name="tvOS" id="tv_os">
+                    <label for="tv_os">tvOS</label>
+                </li>
+                <li><input type="checkbox" name="Watch OS" id="watch_ios">
+                    <label for="watch_ios">Watch OS</label>
+                </li>
+              </ul>
+            </div>
+            <!-- accordion display -->
+            <button class="accordion accordion__display">Display</button>
+            <div class="panel panel__display">
+              <ul>
+                <li><input type="checkbox" name="2-5 inch" id="to_5_inch">
+                    <label for="to_5_inch">2-5 inch</label>
+                </li>
+                <li><input type="checkbox" name="5-7 inch" id="to_7_inch">
+                    <label for="to_7_inch">5-7 inch</label>
+                </li>
+                <li><input type="checkbox" name="7-12 inch" id="to_12_inch">
+                    <label for="to_12_inch">7-12 inch</label>
+                </li>
+                <li><input type="checkbox" name="12-16 inch" id="to_16_inch">
+                    <label for="to_16_inch">12-16 inch</label>
+                </li>
+                <li><input type="checkbox" name="+16 inch" id="over_16_inch">
+                    <label for="over_16_inch">+16 inch</label>
+                </li>
+              </ul>
+            </div>
+            <!-- end of filter-column -->
+            </div>
+  
+            <!-- items-list -->
+            <div class="items-list">
+              <!-- item prototype -->
+      <!--         <div class="item">
+                <img src="/img/items/iphone_12.jpg" />
+                <p class="item__header">Iphone 11 Pro Max</p>
+                <span class="item__left">0 left in stock</span>
+                <span class="item__price">Price: 1100$</span>
+                <button class="btn-add">Add to cart</button>
+                <div class="item__reviews">
+                  <p><span>65%</span> Positive reviews </p>
+                  <p>296</p>
+                  <p>Above avarage </p>
+                  <p> orders </span>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="./js/items.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
 </html>
-
-
-
