@@ -11,6 +11,7 @@
     --border-bottom__filter: #DDDDDD;
     --bottom-card-side: #3B3E66;
     --checkbox-bg: #C4C4C4;
+    --sa: #167222;
 }
 
 .default-box_shadow{
@@ -57,7 +58,7 @@ button {
     }
    }}
    &__banner{
-    background-image: url(/img/banners/watch_banner.jpg);
+    background-image: url(../img/banners/watch_banner.jpg);
     background-repeat: no-repeat;
     object-fit: cover;
    & .banner-container{
@@ -280,20 +281,26 @@ button {
     text-align: center;
     @extend .default-box_shadow;
     padding-top: 50px;
+    & span {
+            font-weight: 700;
+        }
     /* like in corner of item */
-    &::before {
-            content: '';
+    &__like {
             position: absolute;
             cursor: pointer;
+            border: none;
             background: url(../img/icons/like_empty.svg);
             width: 22px;
             height: 21px;
             top: 15px;
             right: 15px;
+            &.active{
+                background: url(../img/icons/like_filled.svg);
+            }
         }
-    & img{
+    & .img{
        max-width: 200px;
-       max-height: 200px;
+       height: 200px;
        margin: 0 auto;
     }
     &__header{
@@ -303,7 +310,6 @@ button {
         padding-top: 10px;
     }
     &__left{
-        font-weight: 700;
         font-size: 14px;
         line-height: 16px;
         color: var(--main-color);
@@ -350,14 +356,11 @@ button {
             display: contents;
         }
         & p{
-            font-weight: 400;
             font-size: 14px;
             line-height: 16px;
             color: var(--bottom-card-side);
         }
-        & span{
-            font-weight: 700;
-            &:nth-of-type(1) {
+        & .positive-reviews {
                     position: relative;
                     &::before {
                         content: '';
@@ -372,7 +375,7 @@ button {
         }
 
     }
-}
+
 
 /* end item-list */
 
