@@ -7,8 +7,8 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>MacOutlet</title>
   </head>
   <body>
@@ -37,7 +37,11 @@
         <div class="main-container">
           <!-- search-field -->
           <div class="search">
-            <input class="search__item" placeholder="Enter device name..." />
+            <input
+              type="text"
+              class="search__item"
+              placeholder="Enter device name..."
+            />
             <div class="search__container">
               <div class="search__container-searchicon">
                 <img src="./img/icons/search.svg" alt="search" />
@@ -67,152 +71,224 @@
               <button class="accordion accordion__colors">Color</button>
               <div class="panel panel__colors">
                 <div class="panel__colors-container">
-                <div class="panel__colors-item">
-                  <ul>
-                    <li>
-                      <input type="checkbox" name="Red" id="colors__red" />
-                      <label for="colors__red">Red</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="Blue" id="colors__blue" />
-                      <label for="colors__blue">Blue</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="Gold" id="colors__gold" />
-                      <label for="colors__gold">Gold</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="Black" id="colors__black" />
-                      <label for="colors__black">Black</label>
-                    </li>
-                  </ul>
-                </div>
-                <div class="panel__colors-item">
-                  <ul>
-                    <li>
-                      <input type="checkbox" name="Green" id="colors__green" />
-                      <label for="colors__green">Green</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="White" id="colors__white" />
-                      <label for="colors__white">White</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="Grey" id="colors__grey" />
-                      <label for="colors__grey">Grey</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="Yellow" id="colors__yellow" />
-                      <label for="colors__yellow">Yellow</label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- accordion memory -->
-            <button class="accordion accordion__memory">Memory</button>
-            <div class="panel panel__memory">
-              <div class="panel__memory-container">
-                <div class="panel__memory-item">
-                  <ul>
-                    <li>
-                      <input type="checkbox" name="32Gb" id="memory__32gb" />
-                      <label for="memory__32gb">32 Gb</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="64Gb" id="memory__64gb" />
-                      <label for="memory__64gb">64 Gb</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="128Gb" id="memory__128gb" />
-                      <label for="memory__128gb">128 Gb</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="256Gb" id="memory__256gb" />
-                      <label for="memory__256gb">256 Gb</label>
-                    </li>
-                  </ul>
-                </div>
-                <div class="panel__memory-item">
-                  <ul>
-                    <li>
-                      <input type="checkbox" name="512Gb" id="memory__512gb" />
-                      <label for="memory__512gb">512 Gb</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="1Tb" id="memory__1Tb" />
-                      <label for="memory__1Tb">1 Tb</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="2Tb" id="memory__2Tb" />
-                      <label for="memory__2Tb">2 Tb</label>
-                    </li>
-                    <li>
-                      <input type="checkbox" name="4Tb" id="memory__4Tb" />
-                      <label for="memory__4Tb">4 Tb</label>
-                    </li>
-                  </ul>
+                  <div class="panel__colors-item">
+                    <ul>
+                      <li>
+                        <input type="checkbox" name="Red" id="colors__red" />
+                        <label for="colors__red">Red</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" name="Blue" id="colors__blue" />
+                        <label for="colors__blue">Blue</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" name="Gold" id="colors__gold" />
+                        <label for="colors__gold">Gold</label>
+                      </li>
+                      <li>
+                        <input
+                          type="checkbox"
+                          name="Black"
+                          id="colors__black"
+                        />
+                        <label for="colors__black">Black</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel__colors-item">
+                    <ul>
+                      <li>
+                        <input
+                          type="checkbox"
+                          name="Green"
+                          id="colors__green"
+                        />
+                        <label for="colors__green">Green</label>
+                      </li>
+                      <li>
+                        <input
+                          type="checkbox"
+                          name="White"
+                          id="colors__white"
+                        />
+                        <label for="colors__white">White</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" name="Grey" id="colors__grey" />
+                        <label for="colors__grey">Grey</label>
+                      </li>
+                      <li>
+                        <input
+                          type="checkbox"
+                          name="Yellow"
+                          id="colors__yellow"
+                        />
+                        <label for="colors__yellow">Yellow</label>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- accordion OS -->
-            <button class="accordion accordion__os">OS</button>
-            <div class="panel panel__os">
-              <ul>
-                <li><input type="checkbox" name="IOS" id="ios">
+              <!-- accordion memory -->
+              <button class="accordion accordion__memory">Memory</button>
+              <div class="panel panel__memory">
+                <div class="panel__memory-container">
+                  <div class="panel__memory-item">
+                    <ul>
+                      <li>
+                        <input type="checkbox" name="32Gb" id="memory__32gb" />
+                        <label for="memory__32gb">32 Gb</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" name="64Gb" id="memory__64gb" />
+                        <label for="memory__64gb">64 Gb</label>
+                      </li>
+                      <li>
+                        <input
+                          type="checkbox"
+                          name="128Gb"
+                          id="memory__128gb"
+                        />
+                        <label for="memory__128gb">128 Gb</label>
+                      </li>
+                      <li>
+                        <input
+                          type="checkbox"
+                          name="256Gb"
+                          id="memory__256gb"
+                        />
+                        <label for="memory__256gb">256 Gb</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel__memory-item">
+                    <ul>
+                      <li>
+                        <input
+                          type="checkbox"
+                          name="512Gb"
+                          id="memory__512gb"
+                        />
+                        <label for="memory__512gb">512 Gb</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" name="1Tb" id="memory__1Tb" />
+                        <label for="memory__1Tb">1 Tb</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" name="2Tb" id="memory__2Tb" />
+                        <label for="memory__2Tb">2 Tb</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" name="4Tb" id="memory__4Tb" />
+                        <label for="memory__4Tb">4 Tb</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- accordion OS -->
+              <button class="accordion accordion__os">OS</button>
+              <div class="panel panel__os">
+                <ul>
+                  <li>
+                    <input type="checkbox" name="IOS" id="ios" />
                     <label for="ios">IOS</label>
-                </li>
-                <li><input type="checkbox" name="Mac OS" id="mac_ios">
+                  </li>
+                  <li>
+                    <input type="checkbox" name="Mac OS" id="mac_ios" />
                     <label for="mac_ios">Mac OS</label>
-                </li>
-                <li><input type="checkbox" name="tvOS" id="tv_os">
+                  </li>
+                  <li>
+                    <input type="checkbox" name="tvOS" id="tv_os" />
                     <label for="tv_os">tvOS</label>
-                </li>
-                <li><input type="checkbox" name="Watch OS" id="watch_ios">
+                  </li>
+                  <li>
+                    <input type="checkbox" name="Watch OS" id="watch_ios" />
                     <label for="watch_ios">Watch OS</label>
-                </li>
-              </ul>
-            </div>
-            <!-- accordion display -->
-            <button class="accordion accordion__display">Display</button>
-            <div class="panel panel__display">
-              <ul>
-                <li><input type="checkbox" name="2-5 inch" id="to_5_inch">
+                  </li>
+                </ul>
+              </div>
+              <!-- accordion display -->
+              <button class="accordion accordion__display">Display</button>
+              <div class="panel panel__display">
+                <ul>
+                  <li>
+                    <input type="checkbox" name="2-5 inch" id="to_5_inch" />
                     <label for="to_5_inch">2-5 inch</label>
-                </li>
-                <li><input type="checkbox" name="5-7 inch" id="to_7_inch">
+                  </li>
+                  <li>
+                    <input type="checkbox" name="5-7 inch" id="to_7_inch" />
                     <label for="to_7_inch">5-7 inch</label>
-                </li>
-                <li><input type="checkbox" name="7-12 inch" id="to_12_inch">
+                  </li>
+                  <li>
+                    <input type="checkbox" name="7-12 inch" id="to_12_inch" />
                     <label for="to_12_inch">7-12 inch</label>
-                </li>
-                <li><input type="checkbox" name="12-16 inch" id="to_16_inch">
+                  </li>
+                  <li>
+                    <input type="checkbox" name="12-16 inch" id="to_16_inch" />
                     <label for="to_16_inch">12-16 inch</label>
-                </li>
-                <li><input type="checkbox" name="+16 inch" id="over_16_inch">
+                  </li>
+                  <li>
+                    <input type="checkbox" name="+16 inch" id="over_16_inch" />
                     <label for="over_16_inch">+16 inch</label>
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
+              <!-- end of filter-column -->
             </div>
-            <!-- end of filter-column -->
-            </div>
-  
+
             <!-- items-list -->
             <div class="items-list">
               <!-- item prototype -->
-      <!--         <div class="item">
-                <img src="/img/items/iphone_12.jpg" />
+              <div class="item">
+                <button class="item__like"></button>
+                <img src="/img/items/iphone_12.jpg" class="img" />
                 <p class="item__header">Iphone 11 Pro Max</p>
-                <span class="item__left">0 left in stock</span>
-                <span class="item__price">Price: 1100$</span>
+                <p class="item__left"><span>0</span> left in stock</p>
+                <p class="item__price"><span>1100</span> $</p>
                 <button class="btn-add">Add to cart</button>
                 <div class="item__reviews">
-                  <p><span>65%</span> Positive reviews </p>
-                  <p>296</p>
-                  <p>Above avarage </p>
-                  <p> orders </span>
+                  <p>
+                    <span class="positive-reviews">65%</span> Positive reviews
+                  </p>
+                  <p><span>296</span></p>
+                  <p>Above avarage</p>
+                  <p>orders</p>
                 </div>
-              </div> -->
+              </div>
+              <!-- modal prototype-->
+              <div class="modal active">
+                <div class="innerModal">
+                  <img src="img/items/airpods-max.jpg" />
+                  <div class="modal__main">
+                    <p class="modal__header">Apple TV Gen. 4 2020</p>
+                    <div class="item__reviews">
+                      <p>
+                        <span class="positive-reviews">65%</span> Positive
+                        reviews
+                      </p>
+                      <p><span>296</span></p>
+                      <p>Above avarage</p>
+                      <p>orders</p>
+                    </div>
+                    <ul class="more-info">
+                      <li>Color: <span>Black</span></li>
+                      <li>Operating System: <span>tvOS</span></li>
+                      <li>Chip: <span>A10X</span></li>
+                      <li>Height: <span>3.5 cm</span></li>
+                      <li>Width: <span>9.8 cm</span></li>
+                      <li>Depth: <span>9.8 cm</span></li>
+                      <li>Weight: <span>425 g</span></li>
+                    </ul>
+                  </div>
+                  <div class="modal__price">
+                    <p>$ 999,45</p>
+                    <p>Stock: <span>45</span> pcs.</p>
+                    <button class="btn-add">Add to cart</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
