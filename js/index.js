@@ -14,7 +14,6 @@ for (i = 0; i < accordionElement.length; i++) {
   });
 }
 
-
 class Item {
   constructor(item) {
     Object.assign(this, item);
@@ -62,6 +61,9 @@ class RenderCards {
     const cardElem = document.createElement('div');
     cardElem.className = 'item';
 
+    const modalContainer = document.createElement('div');
+    modalContainer.className = 'modal';
+
     // Add content for card
     cardElem.innerHTML = `
             <button class="item__like"></button>
@@ -75,6 +77,7 @@ class RenderCards {
               <p>${item.orders}</p>
               <p>Above avarage</p>
               <p>orders</p>
+            </div>
     `;
 
     const likeBtn = cardElem.querySelector('.item__like');
@@ -83,10 +86,57 @@ class RenderCards {
       likeBtn.classList.add('active');
     }
 
-    likeBtn.onclick = () => {
+    likeBtn.onclick = (e) => {
       item.toggleLike();
       likeBtn.classList.toggle('active');
+      e.stopPropagation();
     };
+
+    function modalWindow() {
+      // const btnElem = document.querySelector('.btn-add');
+      const likeBtn = cardElem.querySelector('.item__like');
+
+      const modalContainer = document.querySelector('.innerModal');
+
+      modalElem.onclick = () => {
+        modalElem.classList.remove('active');
+      };
+
+      modalContainer.innerHTML = `
+              <img src="${item.absoluteImgPath}" alt="${item.name}" />
+              <div class="modal__main">
+                <p class="modal__header">${item.name}</p>
+                <div class="item__reviews">
+                  <p><span class="positive-reviews">65%</span> Positive reviews</p>
+                  <p><span>296</span></p>
+                  <p>Above avarage</p>
+                  <p>orders</p>
+                </div>
+                <ul class="more-info">
+                  <li>Color: <span>${item.color.join(', ')}</span></li>
+                  <li>Operating System: <span>${item.os}</span></li>
+                  <li>Chip: <span>${item.chip.name}</span></li>
+                  <li>Height: <span>${item.size.height}</span></li>
+                  <li>Width: <span>${item.size.width}</span></li>
+                  <li>Depth: <span>${item.size.depth}</span></li>
+                  <li>Weight: <span>${item.size.weight}</span></li>
+                </ul>
+              </div>
+              <div class="modal__price">
+                <p>$ ${item.price}</p>
+                <p>Stock: <span>${item.orderInfo.inStock}</span> pcs.</p>
+                <button class="btn-add">Add to cart</button>
+              </div>
+    `;
+    }
+
+    const modalElem = document.querySelector('.modal');
+
+    cardElem.onclick = () => {
+      modalElem.classList.toggle('active');
+    };
+
+    cardElem.addEventListener('click', modalWindow);
 
     return cardElem;
   }
@@ -125,9 +175,9 @@ class Filter {
   }
 }
 
-// const itemsModel = new ItemsModel();
-// const renderCards = new RenderCards(itemsModel);
-// const filter = new Filter(itemsModel, renderCards);
+const itemsModel = new ItemsModel();
+const renderCards = new RenderCards(itemsModel);
+const filter = new Filter(itemsModel, renderCards);
 
 const inputName = document.querySelector('.search__item');
 // const selectSort = document.getElementById('sortFilter');
@@ -142,24 +192,9 @@ inputName.oninput = (event) => {
 //   filter.setFilter('sort', value);
 // };
 
-
-const cardElem = document.querySelector('.item');
-const modalContainer = document.querySelector('.innerModal');
-const modalElem = document.querySelector('.modal');
-
-modalElem.onclick = (e) => {
-  modalElem.classList.remove('active');
-};
-
-cardElem.onclick = () => {
-  modalElem.classList.toggle('active');
-};
-
-const btnElem = document.querySelectorAll('.btn-add');
-
-btnElem.onclick = (event) => {
-  event.stopPropagation();
-};
+// btnElem.onclick = (event) => {
+//   event.stopPropagation();
+// };
 
 /* Может кому понадобится! Можно получить данные из псевдоэлементов after/before 
 var content = window.getComputedStyle(document.querySelector('#tool'),':before').content;
