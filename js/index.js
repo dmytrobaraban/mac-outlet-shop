@@ -26,7 +26,7 @@ class Item {
   }
 
   get absoluteImgPath() {
-    return `img/${this.imgUrl}`;
+    return `./img/${this.imgUrl}`;
   }
 
   toggleLike() {
