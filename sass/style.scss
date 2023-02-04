@@ -2,6 +2,7 @@
 
 :root {
     --white: #FFF;
+    --black: #000;
     --main-color: #767272;
     --fill-color: #0E49B5;
     --added-color: #DDDDDD;
@@ -11,6 +12,7 @@
     --border-bottom__filter: #DDDDDD;
     --bottom-card-side: #3B3E66;
     --checkbox-bg: #C4C4C4;
+    --sa: #167222;
 }
 
 .default-box_shadow{
@@ -57,7 +59,7 @@ button {
     }
    }}
    &__banner{
-    background-image: url(/img/banners/watch_banner.jpg);
+    background-image: url(../img/banners/watch_banner.jpg);
     background-repeat: no-repeat;
     object-fit: cover;
    & .banner-container{
@@ -183,25 +185,25 @@ button {
     line-height: 21px;
     padding: 15px 0 10px 0;
     position: relative;
-    background-color: var(--white);
-&:last-of-type{
-    border-bottom: none;
-}
-&::before{
-    display: block;
-    position: absolute;
-    right: 0;
-    content: '';
-    background-image: url(/img/icons/arrow_left.svg);
-    background-repeat: no-repeat;
-    width: 20px;
-    height: 20px;
-    transition: 0.1s ease-in-out;
-}
-&.active::before {
-    transform: rotate(90deg);
-    transition: 0.1s ease-in-out;
+    background-color: var(--white);    
+    &:last-of-type{
+        border-bottom: none;
     }
+    &::before{
+        display: block;
+        position: absolute;
+        right: 0;
+        content: '';
+        background-image: url(/img/icons/arrow_left.svg);
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        transition: 0.1s ease-in-out;
+    }
+    &.active::before {
+        transform: rotate(90deg);
+        transition: 0.1s ease-in-out;
+        }
 }
 
 /* panel */
@@ -280,20 +282,26 @@ button {
     text-align: center;
     @extend .default-box_shadow;
     padding-top: 50px;
+    & span {
+            font-weight: 700;
+        }
     /* like in corner of item */
-    &::before {
-            content: '';
+    &__like {
             position: absolute;
             cursor: pointer;
+            border: none;
             background: url(../img/icons/like_empty.svg);
             width: 22px;
             height: 21px;
             top: 15px;
             right: 15px;
+            &.active{
+                background: url(../img/icons/like_filled.svg);
+            }
         }
-    & img{
+    & .img{
        max-width: 200px;
-       max-height: 200px;
+       height: 200px;
        margin: 0 auto;
     }
     &__header{
@@ -303,7 +311,6 @@ button {
         padding-top: 10px;
     }
     &__left{
-        font-weight: 700;
         font-size: 14px;
         line-height: 16px;
         color: var(--main-color);
@@ -350,15 +357,13 @@ button {
             display: contents;
         }
         & p{
-            font-weight: 400;
             font-size: 14px;
             line-height: 16px;
             color: var(--bottom-card-side);
         }
-        & span{
-            font-weight: 700;
-            &:nth-of-type(1) {
+        & .positive-reviews {
                     position: relative;
+                    font-weight: 700;
                     &::before {
                         content: '';
                         position: absolute;
@@ -372,8 +377,99 @@ button {
         }
 
     }
-}
+
 
 /* end item-list */
 
 /* end main */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.65);
+    width: 100%;
+    height: 100vh;
+    &.active {
+        display: block;
+    }
+    &__header{
+        margin-top: 35px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        color: var(--bottom-card-side);
+    }
+    &__main{
+        padding: 0 75px;
+        border-left: 1px solid #E2E2E2;
+        border-right: 1px solid #E2E2E2;
+    }
+    &__price{
+        justify-self: center;
+        text-align: center;
+        & p:nth-of-type(1){
+            font-weight: 700;
+            color: var(--bottom-card-side);
+            font-size: 36px;
+            line-height: 42px;
+            margin-bottom: 23px;
+        }
+        & p:nth-of-type(2) {
+            color: var(--bottom-card-side);
+            font-size: 18px;
+            line-height: 21px;
+            margin-bottom: 31px;
+        }
+        & span {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 21px;
+            color: var(--bottom-card-side);
+        }
+    }
+}
+
+// innerModal
+
+.innerModal {
+    position: fixed;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    width: 1024px;
+    max-width: 100%;
+    margin-left: -512px;
+    background-color: var(--white);
+    & img{
+        width: 250px;
+        height: 250px;
+        margin: 0 20px;
+    }
+    & .btn-add{
+        @extend .default-btn
+    }
+    & .item__reviews {
+        margin-bottom: 30px;
+    }
+}
+
+.more-info{
+    & li{
+        font-size: 14px;
+        line-height: 16px;
+        color: var(--main-color);
+        margin-bottom: 15px;
+        &:last-of-type{
+            margin-bottom: 90px;
+        }
+    }
+    & span{
+        color: var(--black);
+    }
+}
