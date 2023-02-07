@@ -170,7 +170,6 @@ button {
 
 /* accordion */
 .accordion {
-  display: block;
   border: none;
   border-bottom: 1px solid var(--border-bottom__filter);
   width: 100%;
@@ -210,6 +209,10 @@ button {
   /* OS panel */
   /* display panel */
 }
+.panel label {
+  display: flex;
+  flex-wrap: wrap;
+}
 .panel__values-item {
   display: flex;
   justify-content: space-between;
@@ -222,9 +225,6 @@ button {
 }
 .panel__values-item:nth-child(1) {
   margin-bottom: 20px;
-}
-.panel__colors-container {
-  display: flex;
 }
 .panel__colors-item ul li:not(:last-child) {
   margin-bottom: 20px;
@@ -411,7 +411,8 @@ button {
 }
 
 .innerModal {
-  position: fixed;
+  position: absolute;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
   align-items: center;
@@ -442,4 +443,8 @@ button {
 }
 .more-info span {
   color: var(--black);
+}
+
+body.active {
+  overflow: hidden;
 }/*# sourceMappingURL=style.css.map */
