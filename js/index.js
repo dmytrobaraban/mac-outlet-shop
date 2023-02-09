@@ -74,12 +74,12 @@ class Item {
   checkIsDisplayIncludes(displays) {
     if (!displays.length) return true;
 
-     for (const display of displays) {
-       if (this.display === display) {
-         return true;
-       }
-     }
-     return false;
+    for (const display of displays) {
+      if (this.display === display) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
@@ -106,7 +106,7 @@ class ItemsModel {
       .filter((item, index, arr) => arr.indexOf(item) === index);
   }
 
-  get availableMemory() {
+  get availableStorage() {
     return this.items
       .map((item) => item.storage)
       .filter(
@@ -134,12 +134,26 @@ class ItemsModel {
   }
 
   // Get list with items based on query as substring in item name
-  findManyByPrice(filter) {
+  findItemsByFilterOption(filter) {
+
     let result = this.items;
+
+    /* Name */
+
+      for (let key in filter) {
+        if (key === 'name') {
+          result = result.filter((item) =>
+            item.name.toLowerCase().includes(filter[key].toLowerCase())
+          );
+        }
+      }
+
+    /* Price range */
 
     for (let key in filter) {
       if (key === 'from') {
-        let numMin = itemsModel.availablePrice[0];
+        let numMin = this.availablePrice[0];
+
         if (key === 'from' && filter[key] > numMin) {
           numMin = +filter[key];
         }
@@ -150,8 +164,7 @@ class ItemsModel {
     }
     for (let key in filter) {
       if (key === 'to') {
-        let numMax =
-          itemsModel.availablePrice[itemsModel.availablePrice.length - 1];
+        let numMax = this.availablePrice[this.availablePrice.length - 1];
         if (key === 'to' && filter[key] < numMax) {
           numMax = +filter[key];
         }
@@ -160,44 +173,74 @@ class ItemsModel {
         });
       }
     }
+
+    /* Color */
+
+    for (let key in filter) {
+      if (key === 'color' && filter[key].length !== 0) {
+        result = result.filter((item) => {
+          for (let ch of filter[key]) {
+            if (item.color.includes(ch)) {
+              return item;
+            }
+          }
+        });
+      }
+    }
+
+    /* Memory */
+
+    for (let key in filter) {
+      if (key === 'storage' && filter[key].length !== 0) {
+        result = result.filter((item) => {
+          if (filter[key].includes(item.storage)) {
+            return item;
+          }
+        });
+      }
+    }
+
+    /* OS */
+
+    for (let key in filter) {
+      if (key === 'os' && filter[key].length !== 0) {
+        result = result.filter((item) => {
+          if (filter[key].includes(item.os)) {
+            return item;
+          }
+        });
+      }
+    }
+
+    /* Screen */
+
+    for (let key in filter) {
+      if (key === 'display' && filter[key].length !== 0) {
+        result = result.filter((item) => {
+          for (const ch of filter[key]) {
+            if (ch == '<5' && item.display < 5) {
+              return item;
+            }
+            if (ch == '5-7' && item.display >= 5 && item.display < 7) {
+              return item;
+            }
+            if (ch == '7-12' && item.display >= 7 && item.display < 12) {
+              return item;
+            }
+            if (ch == '12-16' && item.display >= 12 && item.display <= 16) {
+              return item;
+            }
+            if (ch == '+16' && item.display > 16) {
+              return item;
+            }
+          }
+        });
+      }
+    }
+
     return result;
   }
 
-  filterItems(filter = {}) {
-    const {
-      name = '',
-      price = [],
-      color = [],
-      storage = [],
-      os = [],
-      display = [],
-    } = filter;
-
-    return this.items.filter((item) => {
-      // Check on substring includes in string
-      const isNameIncluded = item.checkIsNameIncludes(name);
-      if (!isNameIncluded) return false;
-
-      // Check on substring includes in string
-      const isColorIncluded = item.checkIsColorIncludes(color);
-      if (!isColorIncluded) return false;
-
-      // Check on substring includes in string
-      const isStorageIncluded = item.checkIsStorageIncludes(storage);
-      if (!isStorageIncluded) return false;
-
-      // Check on substring includes in string
-      const isOsIncluded = item.checkIsOsIncludes(os);
-      if (!isOsIncluded) return false;
-
-      const isDisplayIncluded = item.checkIsDisplayIncludes(display);
-      if (!isDisplayIncluded) return false;
-
-      const isPriceIncluded = item.checkIsPriceIncludes(price);
-      if (!isPriceIncluded) return false;
-      return true;
-    });
-  }
 }
 
 class RenderCards {
@@ -242,7 +285,9 @@ class RenderCards {
       likeBtn.classList.toggle('active');
       e.stopPropagation();
     };
-    // modalWindow
+
+    /* modalWindow */
+
     function modalWindow() {
       const modalContainer = document.querySelector('.innerModal');
 
@@ -337,10 +382,8 @@ class Filter {
   }
 
   #findAndRerender() {
-    const items = this.#itemsModel.filterItems({ ...this });
+    const items = this.#itemsModel.findItemsByFilterOption(filter);
     this.#renderCards.renderCards(items);
-    // const itemByPrice = this.#itemsModel.findManyByPrice({ ...this });
-    // this.#renderCards.renderCards(itemByPrice);
   }
 }
 
@@ -363,7 +406,7 @@ class RenderFilters {
       {
         displayName: 'Memory',
         name: 'storage',
-        options: itemsModel.availableMemory,
+        options: itemsModel.availableStorage,
       },
       {
         displayName: 'OS',
@@ -447,6 +490,7 @@ class RenderFilters {
     }
 
     if (optionsData.name !== 'price') {
+      debugger
       const optionsElements = optionsData.options.map((option) => {
         const filterOption = document.createElement('label');
         filterOption.innerHTML = `<span>${option}</span>`;
@@ -470,8 +514,8 @@ class RenderFilters {
     this.containerElem.innerHTML = '';
 
     const filtersElements = this.filterOptions.map((optionData) =>
-      RenderFilters.renderFilter.call(this, optionData)
-    );
+      RenderFilters.renderFilter.call(this, optionData))
+    
   }
 
   // sortFilter() {
