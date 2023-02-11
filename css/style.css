@@ -139,10 +139,6 @@ button {
   font-size: 18px;
   text-indent: 40px;
 }
-.search .search__item:-ms-input-placeholder {
-  font-size: 18px;
-  text-indent: 40px;
-}
 .search .search__item::placeholder {
   font-size: 18px;
   text-indent: 40px;
@@ -210,8 +206,14 @@ button {
   /* display panel */
 }
 .panel label {
+  cursor: pointer;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.panel span {
+  align-self: center;
 }
 .panel__values-item {
   display: flex;
@@ -226,14 +228,22 @@ button {
 .panel__values-item:nth-child(1) {
   margin-bottom: 20px;
 }
-.panel__colors-item ul li:not(:last-child) {
+.panel__color {
+  grid-template-columns: 1fr 1fr;
+}
+.panel__color__colors-item ul li:not(:last-child) {
   margin-bottom: 20px;
 }
-.panel__colors-item:nth-of-type(1) {
+.panel__color__colors-item:nth-of-type(1) {
   margin-right: 25px;
 }
-.panel__memory-container {
-  display: flex;
+.panel__memory {
+  grid-template-columns: 1fr 1fr;
+}
+.panel__memory label::before {
+  content: "Gb";
+  align-self: center;
+  margin-left: 5px;
 }
 .panel__memory-item ul li:not(:last-child) {
   margin-bottom: 20px;
@@ -243,6 +253,11 @@ button {
 }
 .panel__os ul li:not(:last-child) {
   margin-bottom: 20px;
+}
+.panel__display label::before {
+  content: "inch";
+  align-self: center;
+  margin-left: 5px;
 }
 .panel__display ul li:not(:last-child) {
   margin-bottom: 20px;

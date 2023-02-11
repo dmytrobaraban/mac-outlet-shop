@@ -135,18 +135,17 @@ class ItemsModel {
 
   // Get list with items based on query as substring in item name
   findItemsByFilterOption(filter) {
-
     let result = this.items;
 
     /* Name */
 
-      for (let key in filter) {
-        if (key === 'name') {
-          result = result.filter((item) =>
-            item.name.toLowerCase().includes(filter[key].toLowerCase())
-          );
-        }
+    for (let key in filter) {
+      if (key === 'name') {
+        result = result.filter((item) =>
+          item.name.toLowerCase().includes(filter[key].toLowerCase())
+        );
       }
+    }
 
     /* Price range */
 
@@ -240,7 +239,6 @@ class ItemsModel {
 
     return result;
   }
-
 }
 
 class RenderCards {
@@ -357,7 +355,7 @@ class Filter {
     this.sort = 'default';
     this.color = [];
     this.storage = [];
-    this.from = null;
+    this.from = 0;
     this.to = Infinity;
     this.os = [];
     this.price = [];
@@ -464,13 +462,13 @@ class RenderFilters {
       const min = document.getElementById('value_from');
       const max = document.getElementById('value_to');
 
-      min.oninput = (e) => {
+      min.oninput = (event) => {
         const { value } = e.target;
         this.#filter.setFilter('from', value);
       };
 
       max.oninput = (e) => {
-        const { value } = e.target;
+        let { value } = e.target;
         if (
           Number(value) >=
           itemsModel.availablePrice[itemsModel.availablePrice.length - 1]
@@ -490,7 +488,6 @@ class RenderFilters {
     }
 
     if (optionsData.name !== 'price') {
-      debugger
       const optionsElements = optionsData.options.map((option) => {
         const filterOption = document.createElement('label');
         filterOption.innerHTML = `<span>${option}</span>`;
@@ -508,14 +505,18 @@ class RenderFilters {
       filterContainer.append(...optionsElements);
       this.containerElem.append(filterContainer);
     }
+
+    
   }
 
   renderFilters() {
     this.containerElem.innerHTML = '';
 
     const filtersElements = this.filterOptions.map((optionData) =>
-      RenderFilters.renderFilter.call(this, optionData))
-    
+      RenderFilters.renderFilter.call(this, optionData)
+    );
+
+    return filtersElements;
   }
 
   // sortFilter() {
@@ -540,13 +541,14 @@ for (i = 0; i < accordionElement.length; i++) {
   accordionElement[i].addEventListener('click', function () {
     this.classList.toggle('active');
     const panel = this.nextElementSibling;
-    if (panel.style.display === 'block') {
+    if (panel.style.display === 'grid') {
       panel.style.display = 'none';
     } else {
-      panel.style.display = 'block';
+      panel.style.display = 'grid';
     }
   });
 }
+
 
 // selectSort.onchange = (event) => {
 //   const { value } = event.target;

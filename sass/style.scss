@@ -184,7 +184,7 @@ button {
     line-height: 21px;
     padding: 15px 0 10px 0;
     position: relative;
-    background-color: var(--white);    
+    background-color: var(--white);   
     &:last-of-type{
         border-bottom: none;
     }
@@ -211,9 +211,14 @@ button {
     margin: 25px 0;
     display: none;
     & label {
-            display: flex;
-            flex-wrap: wrap;
-            cursor: pointer;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+    & span {
+         align-self: center;
         }
     /* values panel */
     &__values-item {
@@ -231,19 +236,24 @@ button {
     }
     /* colors panel */
     &__color{
+        grid-template-columns: 1fr 1fr;
+        
 
-    }
     &__colors-item ul li:not(:last-child) {
         margin-bottom: 20px;
     }
     &__colors-item:nth-of-type(1) {
         margin-right: 25px;
     }
+}
     /* memory panel */
     &__memory{
-        &-container {
-                display: flex;
-            }
+        & label::before{
+            content: 'Gb';
+            align-self: center;
+            margin-left: 5px;
+        }
+        grid-template-columns: 1fr 1fr;
             &-item ul li:not(:last-child) {
                 margin-bottom: 20px;
             }
@@ -260,6 +270,11 @@ button {
     }
     /* display panel */
     &__display {
+        & label::before {
+                content: 'inch';
+                align-self: center;
+                margin-left: 5px;
+        }
         ul li:not(:last-child) {
             margin-bottom: 20px;
         }
