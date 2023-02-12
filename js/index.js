@@ -289,9 +289,10 @@ class RenderCards {
 
     const btnAddToCart = cardElem.querySelector('.btn-add');
 
-    btnAddToCart.addEventListener('click', () => {
+    btnAddToCart.addEventListener('click', (e) => {
       cart.addToCart(item);
       renderCart.renderCartList(cart.items);
+      e.stopPropagation();
     });
 
     cardElem.addEventListener('click', modalWindow);
@@ -624,7 +625,7 @@ class RenderCart {
                  <div class="cart__item-number">
                   <span class="decrease-item"
                     ><img src="./img/icons/cart_arrow_left.svg" /></span
-                  ><span class="amount-item">1</span
+                  ><span class="amount-item">${item.amount}</span
                   ><span class="add-item"
                     ><img src="./img/icons/cart_arrow_right.svg" /></span
                   ><span class="remove-item"
