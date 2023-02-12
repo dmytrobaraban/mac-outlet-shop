@@ -52,15 +52,35 @@ button {
     display: flex;
     justify-content: space-between;
     padding: 10px 10px 25px 10px;
-   & .btn-cart{
+    & .btn-cart{
     cursor: pointer;
     border: 1px solid var(--main-color);
     border-radius: 50%;
     padding: 8px 10px;
+    position: relative;
     & img{
         width: 20px;
         height: 20px;           
     }
+    & .cart-items{
+        display: none;
+    }
+    & .cart-items.active{
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 26px;
+        width: 25px;
+        height: 25px;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--fill-color);
+        border-radius: 100%;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        color: var(--white);
+        }
    }}
    &__banner{
     background-image: url(../img/banners/watch_banner.jpg);
@@ -79,7 +99,8 @@ button {
    & .btn-add{
     @extend .default-btn
    }
-}}
+  }
+ }
 }
 
 /* end header */
@@ -510,12 +531,14 @@ button {
         background-color: var(--white);
         border-radius: 10px;
         border-top-right-radius: 0;
+        z-index: 2;
     }
 }
 .cart{
     max-width: 434px;
     text-align: center;
     @extend .default-box_shadow;
+    z-index: 40;
     &__header{
         font-weight: 700;
         font-size: 24px;

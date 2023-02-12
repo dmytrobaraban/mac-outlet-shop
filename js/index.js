@@ -594,13 +594,14 @@ class Cart {
     let result = this.items.filter((it) => it.amount > 0);
     this.items = result;
 
-    // cart counter
-    // const cartCounter = document.querySelector('.cart-btn_number-of-products');
-    // if (cart.totalAmount === 0) {
-    //   cartCounter.classList.remove('active');
-    // }
+  //  cart counter
+    
+    const cartCounter = document.querySelector('.cart-items');
+    if (cart.totalAmount === 0) {
+      cartCounter.classList.remove('active');
+    }
 
-    // return cart.items;
+    return cart.items;
   }
 }
 
@@ -637,15 +638,13 @@ class RenderCart {
     totalAmount.innerHTML = `Total amount: <span class="bold">${cart.totalAmount} ptc.<span>`;
 
     // // cart counter
-    // const cartCounter = document.querySelector('.cart-btn_number-of-products');
-    // if (cart.totalAmount > 0) {
-    //   cartCounter.classList.add('active');
-    //   cartCounter.innerHTML = `
-    //                 <h3>${cart.totalAmount}</h3>
-    //             `;
-    // } else if (cart.totalAmount === 0) {
-    //   cartCounter.classList.remove('active');
-    // }
+    const cartCounter = document.querySelector('.cart-items');
+    if (cart.totalAmount > 0) {
+      cartCounter.classList.add('active');
+      cartCounter.innerHTML = `<span>${cart.totalAmount}</span>`;
+    } else if (cart.totalAmount === 0) {
+      cartCounter.classList.remove('active');
+    }
 
     // total price
     const totalPrice = document.querySelector('.total-price');
