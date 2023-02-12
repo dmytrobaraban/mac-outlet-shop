@@ -253,9 +253,6 @@ class RenderCards {
     const cardElem = document.createElement('div');
     cardElem.className = 'item';
 
-    const modalContainer = document.createElement('div');
-    modalContainer.className = 'modal';
-
     // Add content for card
     cardElem.innerHTML = `
             <button class="item__like"></button>
@@ -299,14 +296,14 @@ class RenderCards {
 
     /* modalWindow */
 
-    function modalWindow() {
+    function modalWindow(e) {
       const modalContainer = document.querySelector('.innerModal');
-      const btn = cardElem.querySelector('.btn-add');
+      const btn = cardElem.querySelector('.add-btn')
 
-      modalElem.onclick = () => {
-        modalElem.classList.remove('active');
-        bodyHidden.classList.remove('active');
-      };
+        modalElem.onclick = () => {
+          modalElem.classList.remove('active');
+          bodyHidden.classList.remove('active');
+        };
 
       modalContainer.innerHTML = `
               <img src="${item.absoluteImgPath}" alt="${item.name}" />
@@ -334,8 +331,15 @@ class RenderCards {
                 <button class="btn-add">Add to cart</button>
               </div>
     `;
+    const modalBtn = modalContainer.querySelector('.btn-add');
+      
+    modalBtn.addEventListener('click', (e) => {
+      cart.addToCart(item);
+      renderCart.renderCartList(cart.items);
+      e.stopPropagation();
+    });
     }
-
+  
     const modalElem = document.querySelector('.modal');
     const bodyHidden = document.getElementsByTagName('body')[0];
 
@@ -343,12 +347,6 @@ class RenderCards {
       modalElem.classList.toggle('active');
       bodyHidden.classList.toggle('active');
     };
-
-    const btnModal = document.querySelector('.btn-add');
-
-    btnModal.addEventListener('click', () => {
-      renderCart.renderCartList(cart.items);
-    });
 
     cardElem.addEventListener('click', modalWindow);
 
