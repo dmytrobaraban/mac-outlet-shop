@@ -35,25 +35,7 @@
               <div class="cart">
                 <p class="cart__header">Shopping Cart</p>
                 <p class="cart__paragraph">Checkout is almost done!</p>
-                <div class="cart-item-list">
-                  <!-- <div class="cart__item">
-                    <img src="./img/items/airpods-max.jpg" class="img-item" />
-                    <div class="cart-item-info">
-                      <p class="cart__item-name">Apple AirPods Pro</p>
-                      <p class="cart__item-price">$600</p>
-                    </div>
-                    <div class="cart__item-number">
-                      <span class="decrease-item"
-                        ><img src="./img/icons/cart_arrow_left.svg" /></span
-                      ><span class="amount-item">1</span
-                      ><span class="add-item"
-                        ><img src="./img/icons/cart_arrow_right.svg" /></span
-                      ><span class="remove-item"
-                        ><img src="./img/icons/remove.svg"
-                      /></span>
-                    </div>
-                  </div> -->
-                </div>
+                <div class="cart-item-list"></div>
                 <div class="cart__total">
                   <span class="total-amount"
                     >Total amount: <span class="bold">0 ptc.</span></span
@@ -73,11 +55,6 @@
       <main>
         <div class="main-container">
           <!-- search-field -->
-          <!-- <select id="sortFilter">
-            <option value="default">Default</option>
-            <option value="asc">Asc price</option>
-            <option value="desc">Desc price</option>
-        </select> -->
           <div class="search">
             <input
               type="text"
@@ -89,8 +66,20 @@
                 <img src="./img/icons/search.svg" alt="search" />
               </div>
               <div class="search__container-items">
-                <img src="./img/icons/filter.svg" alt="filter" />
+                <img
+                  src="./img/icons/filter.svg"
+                  alt="filter"
+                  class="modal-filter"
+                />
                 <img src="./img/icons/settings.svg" alt="settings" />
+              </div>
+            </div>
+            <div class="sort-container">
+              <div class="sort-filter">
+                <p class="sort-filter-header">Order</p>
+                <button class="sort-default">Default</button>
+                <button class="sort-ascending">Ascending</button>
+                <button class="sort-descending">Descending</button>
               </div>
             </div>
           </div>

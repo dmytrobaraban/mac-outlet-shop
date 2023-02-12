@@ -629,6 +629,75 @@ button {
     }
 }
 
+.sort-container{
+    display: none;
+    &.active{
+        display: block;
+    }
+}
+
+.sort-filter{
+    display: flex;
+    position: absolute;
+    right: 0;
+    flex-direction: column;
+    text-align: center;
+    width: 160px;
+    background-color: var(--white);
+    z-index: 2;
+    @extend .default-box_shadow;
+    &-header{
+        text-align: left;
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--fill-color);
+        margin: 15px 10px;
+    }
+    & button{
+            font-size: 12px;
+            line-height: 14px;
+            padding: 5px 0;
+            color: var(--searh__item-hover);
+            border: none;
+            background-color: var(--white);
+            margin-bottom: 15px;
+            &:hover{
+                background: #EDF3FF;
+                border-radius: 15px;
+            }
+    }
+    & .sort-default{
+        background: #EDF3FF;
+        border-radius: 15px;
+    }
+    & .sort-ascending{
+        &::before{
+            content: '';
+            display: block;
+            position: absolute;
+            left: 1px;
+            background-image: url(../img/icons/arrow_left.svg);
+            width: 20px;
+            height: 20px;
+            transform: rotate(-90deg);
+        }
+    }
+    & .sort-descending{
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 5px;
+            
+            background-image: url(../img/icons/arrow_left.svg);
+            width: 20px;
+            height: 20px;
+            transform: rotate(90deg);
+            }
+    }
+
+}
+
 
 body.active {
     overflow: hidden
