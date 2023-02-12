@@ -271,6 +271,7 @@ class RenderCards {
               <p>orders</p>
             </div>
     `;
+    /* Like btn */
 
     const likeBtn = cardElem.querySelector('.item__like');
 
@@ -284,10 +285,22 @@ class RenderCards {
       e.stopPropagation();
     };
 
+    /* add to Cart */
+
+    const btnAddToCart = cardElem.querySelector('.btn-add');
+
+    btnAddToCart.addEventListener('click', () => {
+      cart.addToCart(item);
+      renderCart.renderCartList(cart.items);
+    });
+
+    cardElem.addEventListener('click', modalWindow);
+
     /* modalWindow */
 
     function modalWindow() {
       const modalContainer = document.querySelector('.innerModal');
+      const btn = cardElem.querySelector('.btn-add');
 
       modalElem.onclick = () => {
         modalElem.classList.remove('active');
@@ -329,6 +342,12 @@ class RenderCards {
       modalElem.classList.toggle('active');
       bodyHidden.classList.toggle('active');
     };
+
+    const btnModal = document.querySelector('.btn-add');
+
+    btnModal.addEventListener('click', () => {
+      renderCart.renderCartList(cart.items);
+    });
 
     cardElem.addEventListener('click', modalWindow);
 
@@ -505,8 +524,6 @@ class RenderFilters {
       filterContainer.append(...optionsElements);
       this.containerElem.append(filterContainer);
     }
-
-    
   }
 
   renderFilters() {
@@ -528,8 +545,162 @@ class RenderFilters {
   // }
 }
 
+/* Cart */
+
+class Cart {
+  constructor() {
+    this.items = [];
+    this.name = 'Cart';
+  }
+
+  addToCart(item) {
+    const id = item.id;
+    const itemInCart = this.items.find((product) => product.id === id);
+    if (itemInCart) {
+      if (itemInCart.amount < 4) {
+        itemInCart.amount++;
+      }
+      return itemInCart;
+    }
+    const newItemInCart = {
+      id,
+      item,
+      amount: 1,
+    };
+    return this.items.push(newItemInCart);
+  }
+
+  get totalAmount() {
+    return this.items.reduce((acc, item) => {
+      return acc + item.amount;
+    }, 0);
+  }
+
+  get totalPrice() {
+    return this.items.reduce((acc, item) => {
+      return acc + item.amount * item.item.price;
+    }, 0);
+  }
+
+  decreaseItem(item) {
+    const id = item.id;
+    const itemInCart = this.items.find((product) => product.id === id);
+    if (itemInCart && itemInCart.amount >= 2) {
+      itemInCart.amount--;
+    }
+  }
+
+  removeItem(item) {
+    item.amount = 0;
+    let result = this.items.filter((it) => it.amount > 0);
+    this.items = result;
+
+    // cart counter
+    // const cartCounter = document.querySelector('.cart-btn_number-of-products');
+    // if (cart.totalAmount === 0) {
+    //   cartCounter.classList.remove('active');
+    // }
+
+    // return cart.items;
+  }
+}
+
+class RenderCart {
+  constructor() {
+    this.cartContainer = document.querySelector('.cart-item-list');
+    this.renderCartList(cart.items);
+    this.openCartModalWindow();
+  }
+
+  renderCartToList(item) {
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart__item';
+    cartItem.innerHTML = `
+                    <img src="${item.item.absoluteImgPath}" alt ="${item.item.name}" class="img-item" />
+                <div class="cart-item-info">
+                  <p class="cart__item-name"${item.item.name}</p>
+                  <p class="cart__item-price">$${item.item.price}</p>
+                </div>
+                 <div class="cart__item-number">
+                  <span class="decrease-item"
+                    ><img src="./img/icons/cart_arrow_left.svg" /></span
+                  ><span class="amount-item">1</span
+                  ><span class="add-item"
+                    ><img src="./img/icons/cart_arrow_right.svg" /></span
+                  ><span class="remove-item"
+                    ><img src="./img/icons/remove.svg"
+                  /></span>
+                </div>
+    `;
+
+    // total amount
+    const totalAmount = document.querySelector('.total-amount');
+    totalAmount.innerHTML = `Total amount: <span class="bold">${cart.totalAmount} ptc.<span>`;
+
+    // // cart counter
+    // const cartCounter = document.querySelector('.cart-btn_number-of-products');
+    // if (cart.totalAmount > 0) {
+    //   cartCounter.classList.add('active');
+    //   cartCounter.innerHTML = `
+    //                 <h3>${cart.totalAmount}</h3>
+    //             `;
+    // } else if (cart.totalAmount === 0) {
+    //   cartCounter.classList.remove('active');
+    // }
+
+    // total price
+    const totalPrice = document.querySelector('.total-price');
+    totalPrice.innerHTML = `Total price: <span class="bold">$${cart.totalPrice}</span>`;
+
+    // decrease
+    const decreaseBtn = cartItem.querySelector('.decrease-item');
+    decreaseBtn.addEventListener('click', () => {
+      cart.decreaseItem(item);
+      renderCart.renderCartList(cart.items);
+    });
+
+    // add
+    const addBtn = cartItem.querySelector('.add-item');
+    addBtn.addEventListener('click', () => {
+      cart.addToCart(item);
+      renderCart.renderCartList(cart.items);
+    });
+
+    // remove
+    const removeBtn = cartItem.querySelector('.remove-item');
+    removeBtn.addEventListener('click', () => {
+      cart.removeItem(item);
+      renderCart.renderCartList(cart.items);
+      totalAmount.innerHTML = `Total amount: ${cart.totalAmount} ptc.`;
+      totalPrice.innerHTML = `Total price: ${cart.totalPrice}$`;
+    });
+
+    return cartItem;
+  }
+
+  renderCartList(items) {
+    this.cartContainer.innerHTML = '';
+    let products = items.map((item) => {
+      return this.renderCartToList(item);
+    });
+    return this.cartContainer.append(...products);
+  }
+
+  // toggle cart
+  openCartModalWindow() {
+    const cartBtn = document.querySelector('.btn-cart');
+    const cartWindow = document.querySelector('.cart-container');
+
+    cartBtn.onclick = () => {
+      cartWindow.classList.toggle('active');
+    };
+  }
+}
+
 const itemsModel = new ItemsModel();
-const renderCards = new RenderCards(itemsModel);
+const cart = new Cart();
+const renderCart = new RenderCart(cart);
+const renderCards = new RenderCards(itemsModel, cart, renderCart);
 const filter = new Filter(itemsModel, renderCards);
 const renderFilters = new RenderFilters(itemsModel, filter);
 
@@ -549,14 +720,9 @@ for (i = 0; i < accordionElement.length; i++) {
   });
 }
 
-
 // selectSort.onchange = (event) => {
 //   const { value } = event.target;
 //   filter.setFilter('sort', value);
-// };
-
-// btnElem.onclick = (event) => {
-//   event.stopPropagation();
 // };
 
 /* Может кому понадобится! Можно получить данные из псевдоэлементов after/before 

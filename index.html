@@ -20,7 +20,7 @@
             <div class="logo">
               <img src="./img/icons/store_logo.png" alt="store_logo" />
             </div>
-            <div class="cart">
+            <div class="btn-cart">
               <img src="./img/icons/cart.svg" alt="cart" />
             </div>
           </div>
@@ -29,9 +29,45 @@
               <h1 class="banner__header">Apple Watch 4</h1>
               <button class="btn-add">Add to cart</button>
             </div>
+            <!-- Cart -->
+            <div class="cart-container">
+              <div class="cart">
+                <p class="cart__header">Shopping Cart</p>
+                <p class="cart__paragraph">Checkout is almost done!</p>
+                <div class="cart-item-list">
+                  <!-- <div class="cart__item">
+                    <img src="./img/items/airpods-max.jpg" class="img-item" />
+                    <div class="cart-item-info">
+                      <p class="cart__item-name">Apple AirPods Pro</p>
+                      <p class="cart__item-price">$600</p>
+                    </div>
+                    <div class="cart__item-number">
+                      <span class="decrease-item"
+                        ><img src="./img/icons/cart_arrow_left.svg" /></span
+                      ><span class="amount-item">1</span
+                      ><span class="add-item"
+                        ><img src="./img/icons/cart_arrow_right.svg" /></span
+                      ><span class="remove-item"
+                        ><img src="./img/icons/remove.svg"
+                      /></span>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="cart__total">
+                  <span class="total-amount"
+                    >Total amount: <span class="bold">0 ptc.</span></span
+                  >
+                  <span class="total-price"
+                    >Total price: <span class="bold">0$</span></span
+                  >
+                </div>
+                <button class="cart-btn">Buy</button>
+              </div>
+            </div>
           </div>
         </div>
       </header>
+
       <!-- main -->
       <main>
         <div class="main-container">
@@ -59,11 +95,9 @@
           </div>
           <div class="items-container">
             <!-- filter-column -->
-            <div class="filter-column">
-            </div>
+            <div class="filter-column"></div>
             <!-- items-list -->
-            <div class="items-list">
-            </div>
+            <div class="items-list"></div>
           </div>
         </div>
       </main>
@@ -72,6 +106,7 @@
     <div class="modal">
       <div class="innerModal"></div>
     </div>
+    
     <script src="./js/items.js"></script>
     <script src="./js/index.js"></script>
   </body>
